@@ -15,7 +15,7 @@ selected_projects: true # includes a list of projects marked as "selected={true}
 social: false  # includes social icons at the bottom of the page
 ---
 
-**About Me**
+<span style="font-size: 1.5em; font-weight: normal;">About Me</span>
 
 I am a Master’s student at Peking University, advised by Professor Bin Cui. My research interests include large language models, AI agents, and reinforcement learning methods for agentic systems.
 
