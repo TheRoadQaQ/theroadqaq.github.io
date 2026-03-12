@@ -5,7 +5,7 @@ date: 2026-03-12 12:00:00
 description: My first blog post — a starting point for sharing thoughts on research, AI, and beyond.
 tags: life research
 categories: thoughts
-img: assets/img/roadma.jpg
+img: 
 ---
 
 This is my first blog post. I'm a Master's student at Peking University working on large language models, AI agents, and reinforcement learning.
