@@ -5,6 +5,7 @@ date: 2026-03-12 12:00:00
 description: My first blog post — a starting point for sharing thoughts on research, AI, and beyond.
 tags: life research
 categories: thoughts
+img: assets/img/roadma.jpg
 ---
 
 This is my first blog post. I'm a Master's student at Peking University working on large language models, AI agents, and reinforcement learning.
@@ -17,26 +18,25 @@ This blog is a place where I'll share:
 
 ---
 
-### How this works
+### How to add a new post
 
-Every post lives in the `_posts/` folder and follows the naming convention:
-
-```
-YYYY-MM-DD-title-with-dashes.md
-```
-
-The front matter at the top of each file controls how the post appears:
+Just create a new `.md` file inside the `blog/` folder. The front matter at the top controls how the post appears in the card list:
 
 ```yaml
 ---
 layout: post
 title: Your Post Title
 date: 2026-03-12 12:00:00
-description: A short description shown in the post list.
+description: A short description shown on the card.
 tags: tag1 tag2
-categories: category-name
+categories: your-category
+img: assets/img/your-thumbnail.jpg   # optional – shows on the card
 ---
 ```
+
+That's it — no config changes needed.
+
+---
 
 ### Math support
 

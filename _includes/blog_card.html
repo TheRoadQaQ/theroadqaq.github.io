@@ -1,0 +1,37 @@
+<!-- _includes/blog_card.html -->
+<div class="col">
+  <a href="{{ include.post.url | relative_url }}" style="text-decoration: none;">
+    <div class="card hoverable">
+      <div class="row g-0">
+        {% if include.post.img %}
+        <div class="col-md-4 blog-card-img-col">
+          <img src="{{ include.post.img | relative_url }}"
+               class="img-fluid rounded-start blog-card-img"
+               alt="{{ include.post.title }}">
+        </div>
+        <div class="col-md-8">
+        {% else %}
+        <div class="col-md-12">
+        {% endif %}
+          <div class="card-body">
+            <h3 class="card-title">{{ include.post.title }}</h3>
+            <p class="card-text">{{ include.post.description }}</p>
+            <p class="card-text">
+              <small class="text-muted">
+                <i class="fas fa-calendar fa-sm"></i>
+                {{ include.post.date | date: "%B %-d, %Y" }}
+                {% if include.post.tags and include.post.tags != "" %}
+                  &nbsp;&middot;&nbsp;
+                  {% for tag in include.post.tags %}
+                    <i class="fas fa-hashtag fa-sm"></i>{{ tag }}&nbsp;
+                  {% endfor %}
+                {% endif %}
+              </small>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
+</div>
+
