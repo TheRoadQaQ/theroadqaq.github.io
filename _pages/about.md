@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle:  <a href='https://www.nature.com/articles/nature20563'>Biorhythms</a>, <a href='https://onlinelibrary.wiley.com/doi/full/10.1111/ele.13662'>macroecology & evolution</a>, <a href='https://osf.io/profile/'>open science</a>, <a href='https://www.youtube.com/channel/UCP8ITIDaFZHW68z7KaTyDew'>shorebirds</a>.
+subtitle:
 profile:
   align: right
   image: roadma.jpg
@@ -11,18 +11,14 @@ profile:
 
 news: false  # includes a list of news items
 selected_papers: false # includes a list of papers marked as "selected={true}"
+selected_projects: true # includes a list of projects marked as "selected={true}"
 social: false  # includes social icons at the bottom of the page
 ---
 
-I strive to understand the World within and around me. 
+**About Me**
 
-As a **scientist**, I use birds, mainly shorebirds, to explore 
-- <a href='https://www.nature.com/articles/s41598-019-41223-z'>rhythms of parental care</a> and <a href='https://doi.org/10.3389/fevo.2019.00093'>how such rhythms emerge</a>, 
--  <a href='https://www.nature.com/articles/nature20563'>within- and between-species differences in rhythmicities</a> and what may drive such differences, as well as
-- <a href='https://onlinelibrary.wiley.com/doi/full/10.1111/ele.13662'>distribution and evolution of traits across the globe</a>
+I am a Master’s student at Peking University, advised by Professor Bin Cui. My research interests include large language models, AI agents, and reinforcement learning methods for agentic systems.
 
-**Currently**, I am investigating global similarities in shorebird parental care, global differences in uniparental incubation of shorebirds, biorhythms of red knots and drivers of global variation in the song of songbirds.  
+Previously, I obtained my bachelor’s degree in Computer Science from Renmin University of China.
 
-I am an **associate professor** at   [Czech University of Life Sciences Prague](https://www.czu.cz/en) and **collaborate** with [scientists and institutions across the globe](https://doi.org/10.1126/science.aaw8529). 
-
-I am a regular contributor to <a href='https://www.inaturalist.org/people/1583651'>iNaturalist</a>. 
+I am currently seeking summer internship opportunities. Please feel free to reach out if you are interested in collaboration.
