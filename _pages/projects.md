@@ -10,3 +10,5 @@ nav_order: 1
 <div class="publications">
   {% bibliography -f projects -q @*[selected=true]* %}
 </div>
+
+† means equal contribution
