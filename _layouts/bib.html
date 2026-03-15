@@ -31,13 +31,11 @@
         {%- else %}
           <!-- Title -->
           <div class="title">{{entry.title}}</div>
-          {%- if entry.role -%}
-          <div class="role" style="margin-bottom: 4px;">
-            <span class="badge" style="font-size: 0.7em; background-color: {% if entry.role == 'Core Contributor' %}#2196F3{% else %}#78909C{% endif %}; color: #fff; padding: 2px 7px; border-radius: 4px;">{{entry.role}}</span>
-          </div>
-          {%- endif -%}
           <!-- Author -->
           <div class="author">
+          {%- if entry.role -%}
+            {{entry.role}}
+          {%- else -%}
           {% assign author_array_size = entry.author_array | size %}
 
           {% assign author_array_limit = author_array_size %}
@@ -108,6 +106,7 @@
                 }, '{{site.more_authors_animation_delay}}');
                 "
             >{{more_authors_hide}}</span>
+          {%- endif -%}
           {%- endif -%}
 
           </div>

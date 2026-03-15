@@ -8,6 +8,8 @@ nav: true
 nav_order: 2
 ---
 <!-- _pages/publications.md -->
+<p>† means equal contribution</p>
+
 <div class="publications">
 
 {%- for y in page.years %}
