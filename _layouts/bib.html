@@ -31,6 +31,11 @@
         {%- else %}
           <!-- Title -->
           <div class="title">{{entry.title}}</div>
+          {%- if entry.role -%}
+          <div class="role" style="margin-bottom: 4px;">
+            <span class="badge" style="font-size: 0.7em; background-color: {% if entry.role == 'Core Contributor' %}#2196F3{% else %}#78909C{% endif %}; color: #fff; padding: 2px 7px; border-radius: 4px;">{{entry.role}}</span>
+          </div>
+          {%- endif -%}
           <!-- Author -->
           <div class="author">
           {% assign author_array_size = entry.author_array | size %}
@@ -108,20 +113,21 @@
           </div>
 
           <!-- Journal/Book title and date -->
-          {% if entry.type == "article" -%}
-            {%- capture entrytype -%}<em>{{entry.journal}}</em>{%- endcapture -%}
-          {%- elsif ["inproceedings", "incollection"] contains entry.type -%}
-            {%- capture entrytype -%}<em>In {{entry.booktitle}}</em> {%- endcapture -%}
+          {%- if entry.booktitle -%}
+            {%- capture periodical -%}<em>{{entry.booktitle}}</em>{%- endcapture -%}
+          {%- elsif entry.type == "article" and entry.journal -%}
+            {%- capture periodical -%}<em>{{entry.journal}}</em>{%- endcapture -%}
           {%- else -%}
-            {%- capture entrytype -%}{%- endcapture -%}
+            {%- assign entrymonth = "" -%}
+            {%- assign entryyear = "" -%}
+            {%- if entry.month -%}
+              {%- assign entrymonth = entry.month | capitalize -%}
+            {%- endif -%}
+            {%- if entry.year -%}
+              {%- assign entryyear = entry.year | prepend: " " -%}
+            {%- endif -%}
+            {%- capture periodical -%}{{ entrymonth }}{{ entryyear }}{%- endcapture -%}
           {%- endif -%}
-          {%- if entry.month -%}
-            {%- capture entrymonth -%}{{ " " }}{{ entry.month | capitalize }}{%- endcapture -%}
-          {%- endif -%}
-          {%- if entry.year -%}
-            {%- capture entryyear -%}{{ " " }}{{entry.year}}{%- endcapture -%}
-          {%- endif -%}
-          {%- capture periodical -%}{{ entrytype }}{{ entrymonth }}{{ entryyear }}{%- endcapture -%}
           <div class="periodical">
             {{ periodical | strip }}
           </div>
