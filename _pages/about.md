@@ -22,5 +22,3 @@ I am a Master student at Peking University, advised by Professor [Bin Cui](https
 Previously, I obtained my bachelor’s degree in Computer Science from Renmin University of China.
 
 I am currently seeking summer internship opportunities. Please feel free to reach out if you are interested in collaboration.
-
-<p>† means equal contribution</p>
