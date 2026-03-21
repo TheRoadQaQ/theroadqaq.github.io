@@ -168,6 +168,12 @@
           {% endif %}
           {%- if entry.code %}
             <a href="{{ entry.code }}" class="btn btn-sm z-depth-0" role="button">Code</a>
+            {%- if entry.code contains 'github.com' -%}
+              {%- assign github_repo_path = entry.code | split: 'github.com/' | last -%}
+              <a href="{{ entry.code }}" target="_blank" style="vertical-align: middle; text-decoration: none;">
+                <img src="https://img.shields.io/github/stars/{{ github_repo_path }}?style=social" alt="GitHub stars" style="vertical-align: middle; margin-bottom: 2px;">
+              </a>
+            {%- endif -%}
           {%- endif %}
             {%- if entry.osf %}
             <a href="{{ entry.osf }}" class="btn btn-sm z-depth-0" role="button">Code & Data</a>

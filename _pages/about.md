@@ -19,6 +19,6 @@ social: false  # includes social icons at the bottom of the page
 
 I am a Master student at Peking University, advised by Professor [Bin Cui](https://cuibinpku.github.io/). My research interests include large language models, AI agents, and reinforcement learning methods for agentic systems.
 
-Before this, I obtained my bachelor’s degree in Computer Science from Renmin University of China. Previously, I conducted my internship at Tencent (2024.10-2025.4), Meituan (2025.09-2025.12).
+Before this, I obtained my bachelor’s degree in Computer Science from Renmin University of China. Previously, I conducted my internship at Tencent AI Lab, Meituan LongCat.
 
 I am currently seeking summer internship opportunities. Please feel free to reach out if you are interested in collaboration.
