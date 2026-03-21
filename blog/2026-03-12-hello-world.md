@@ -1,10 +1,10 @@
 ---
 layout: post
-title: 复习：从Reinforce到GRPO
+title: 从Reinforce开始
 date: 2026-03-20 12:00:00
 description: 
 tags: learning
-categories: thoughts
+categories: Thoughts
 img: 
 ---
 
