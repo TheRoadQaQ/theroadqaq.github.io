@@ -54,15 +54,15 @@ $$
 而轨迹概率可分解成state级别：
 
 $$
-\pi_{\theta}(\tau) = p(s_0) \prod_{t=0}^{T-1} \pi_{\theta}(a_t|s_t) p(s_{t+1}|s_t,a_t)
+\pi_{\theta}(\tau) = p(s_0) \prod_{t=0}^{T-1} \pi_{\theta}(a_t \mid s_t) p(s_{t+1} \mid s_t,a_t)
 $$
 
-其中，$p(s_0)$ 是初始状态分布，$\pi_{\theta}(a_t|s_t)$ 是策略网络，$p(s_{t+1}|s_t,a_t)$ 是环境转移概率。同时由于环境转移概率对模型参数不可导
+其中，$p(s_0)$ 是初始状态分布, $\pi_{\theta}(a_t \mid s_t)$ 是策略网络，$p(s_{t+1} \mid s_t,a_t)$ 是环境转移概率。同时由于环境转移概率对模型参数不可导
 
 因此，可以将梯度为：
 
 $$
-\nabla_{\theta}\mathcal{L}(\theta) = \mathbb{E}_{\tau \sim \pi_{\theta}} \left[ R(\tau) \sum_{t=0}^{T-1} \nabla_{\theta} \log \pi_{\theta}(a_t|s_t) \right]
+\nabla_{\theta}\mathcal{L}(\theta) = \mathbb{E}_{\tau \sim \pi_{\theta}} \left[ R(\tau) \sum_{t=0}^{T-1} \nabla_{\theta} \log \pi_{\theta}(a_t \mid s_t) \right]
 $$
 
 这个公式就是REINFORCE算法的基础。要优化我们的目标，我们只需要采样很多轨迹，得到这些轨迹的return，求均值后优化每个state转移的log_prob即可
@@ -72,13 +72,13 @@ $$
 同时可以进一步优化，考虑单独的每一个state的转移的目标梯度
 
 $$
-\mathbb{E}_{\tau \sim \pi_{\theta}}\left[ R(\tau) \nabla_{\theta} \log \pi_{\theta}(a_t|s_t) \right]
+\mathbb{E}_{\tau \sim \pi_{\theta}}\left[ R(\tau) \nabla_{\theta} \log \pi_{\theta}(a_t \mid s_t) \right]
 $$
 
-$R(\tau)$ 是从 $\pi_{\theta}$ 中采样的一整条轨迹的return，而 $\log \pi_{\theta}(a_t|s_t)$ 只是一个state的转移概率，两者明显不对等，我们需要把 $R(\tau)$ 进一步细化。考虑
+$R(\tau)$ 是从 $\pi_{\theta}$ 中采样的一整条轨迹的return，而 $\log \pi_{\theta}(a_t \mid s_t)$ 只是一个state的转移概率，两者明显不对等，我们需要把 $R(\tau)$ 进一步细化。考虑
 
 $$
-R(\tau) \nabla_{\theta} \log \pi_{\theta}(a_t|s_t) = R(\tau_{<t}) \nabla_{\theta} \log \pi_{\theta}(a_t|s_t) + R(\tau_{\ge t}) \nabla_{\theta} \log \pi_{\theta}(a_t|s_t)
+R(\tau) \nabla_{\theta} \log \pi_{\theta}(a_t \mid s_t) = R(\tau_{<t}) \nabla_{\theta} \log \pi_{\theta}(a_t \mid s_t) + R(\tau_{\ge t}) \nabla_{\theta} \log \pi_{\theta}(a_t \mid s_t)
 $$
 
 其中
@@ -96,18 +96,18 @@ $$
 $$
 \mathbb{E}_{\tau\sim\pi_\theta}
 \left[
-R_{\tau<t}\nabla_\theta \log \pi_\theta(a_t|s_t)
+R_{\tau<t}\nabla_\theta \log \pi_\theta(a_t \mid s_t)
 \right] = \mathbb{E}_{\tau_{<t}\sim\pi_\theta}
 \left[
 \mathbb{E}_{\tau_{\ge t}\sim \pi_\theta(\cdot\mid \tau_{<t})}
 \left[
-R_{\tau<t}\nabla_\theta \log \pi_\theta(a_t|s_t)
+R_{\tau<t}\nabla_\theta \log \pi_\theta(a_t \mid s_t)
 \right]
 \right] \\
 = \mathbb{E}_{\tau_{<t}\sim\pi_\theta}\left[R_{\tau<t}
 \left[
 \mathbb{E}_{\tau_{\ge t}\sim \pi_\theta(\cdot\mid \tau_{<t})}
-\nabla_\theta \log \pi_\theta(a_t|s_t)
+\nabla_\theta \log \pi_\theta(a_t \mid s_t)
 \right]\right]
 $$
 
@@ -115,22 +115,22 @@ $$
 
 $$
 \mathbb{E}_{\tau_{\ge t}\sim \pi_\theta(\cdot\mid \tau_{<t})}
-\nabla_\theta \log \pi_\theta(a_t|s_t) \\
+\nabla_\theta \log \pi_\theta(a_t \mid s_t) \\
 $$
 
 在条件 $\tau_{<t}$ 下，随机性只来自 $a_t$ 及其之后, 先只看 $s_t$ 到 $a_t$的转移：
 
 $$
 \sum_{a_t}
-\pi_\theta(a_t|s_t)\,
-\nabla_\theta \log \pi_\theta(a_t|s_t) = \sum_{a_t} \nabla_\theta \pi_\theta(a_t|s_t) = \nabla_\theta \sum_{a_t}  \pi_\theta(a_t|s_t) = \nabla_\theta 1 = 0
+\pi_\theta(a_t \mid s_t)\,
+\nabla_\theta \log \pi_\theta(a_t \mid s_t) = \sum_{a_t} \nabla_\theta \pi_\theta(a_t \mid s_t) = \nabla_\theta \sum_{a_t}  \pi_\theta(a_t \mid s_t) = \nabla_\theta 1 = 0
 $$
 
 所以
 
 $$
-\nabla_{\theta}\mathcal{L}(\theta) = \mathbb{E}_{\tau \sim \pi_{\theta}}\left[ R(\tau) \sum_{t=0}^{T-1} \nabla_{\theta} \log \pi_{\theta}(a_t|s_t) \right] = 
-\mathbb{E}_{\tau \sim \pi_{\theta}}\sum_{t=0}^{T-1}\left[ R(\tau_{\ge t}) \nabla_{\theta} \log \pi_{\theta}(a_t|s_t) \right]
+\nabla_{\theta}\mathcal{L}(\theta) = \mathbb{E}_{\tau \sim \pi_{\theta}}\left[ R(\tau) \sum_{t=0}^{T-1} \nabla_{\theta} \log \pi_{\theta}(a_t \mid s_t) \right] = 
+\mathbb{E}_{\tau \sim \pi_{\theta}}\sum_{t=0}^{T-1}\left[ R(\tau_{\ge t}) \nabla_{\theta} \log \pi_{\theta}(a_t \mid s_t) \right]
 $$
 
 ### 从公式到代码
@@ -153,16 +153,13 @@ $$
 ```python
 def reinforce_surrogate_loss(log_prob, returns):
     """
-    log_prob: [batch_size, seq_len]，已采样动作的 log π(a_t|s_t)
+    log_prob: [batch_size, seq_len]，已采样动作的 log π(a_t \mid s_t)
     returns:  [batch_size, seq_len]，对应时刻的 G_t
     mask: [batch_size, seq_len]，对每个state action的mask
     """
     loss = -((returns.detach() * log_prob) * mask).sum() / mask.sum()
     return loss
 ```
-
-
-
 
 ---
 
