@@ -7,13 +7,13 @@ tags: learning
 categories: Thoughts
 img: 
 ---
-# Review Reinforce Algorithm
+# Baseline
+
+回顾一下 REINFORCE 的公式
 
 $$
 \nabla_{\theta}\mathcal{L}(\theta) = \mathbb{E}_{\tau \sim \pi_{\theta}}\sum_{t=0}^{T-1}\left[ R(\tau_{\ge t}) \nabla_{\theta} \log \pi_{\theta}(a_t \mid s_t) \right]
 $$
-
-# Add Baseline
 
 上面的Reinforce公式虽然无偏，但是方差较大。我们用
 
@@ -23,14 +23,7 @@ $$
 
 更新 $t$ 步的概率，但是 $R(\tau_{\ge t})$的波动往往很大，尤其是长轨迹、稀疏奖励的情况（RLVR/Agentic RL）
 
-因此可以不直接用return $R(\tau_{\ge t})$，而是用 return 减去一个参考值，也就是baseline
-
-$$
-\nabla_{\theta}\mathcal{L}(\theta) = 
-\mathbb{E}_{\tau \sim \pi_{\theta}}\sum_{t=0}^{T-1} \left[ R(\tau_{\ge t}) \nabla_{\theta} \log \pi_{\theta}(a_t \mid s_t) \right]
-$$
-
-现在引入一个 baseline $b(s_t)$，得到
+因此可以不直接用return $R(\tau_{\ge t})$，而是用 return 减去一个参考值，也就是baseline $b(s_t)$，得到
 
 $$
 \nabla_{\theta}\mathcal{L}(\theta)
@@ -44,7 +37,7 @@ $$
 
 这个式子看起来像是“偷偷改了目标”，但其实**并没有引入偏差**，因为 baseline 对梯度期望的贡献为 0。
 
-### 为什么减去 baseline 仍然是无偏的
+#### 为什么减去 baseline 仍然是无偏的
 
 我们只看多出来的那一项：
 
@@ -127,7 +120,7 @@ $$
 
 也就是说，**减去任意一个与动作无关的 baseline，不会改变梯度的期望，只会影响方差。**
 
-### 直觉理解
+#### 直觉理解
 
 $R(\tau_{\ge t})$ 可以理解为“这个动作之后最终拿到了多少回报”。
 
@@ -161,11 +154,11 @@ $$
 \right]
 $$
 
-这里最自然的问题就是：这个 $b(s_t)$ 到底该取什么？为什么大家最后都会写成 advantage？
+这里最自然的问题就是：这个 $b(s_t)$ 到底该取什么？为什么大家最后都会把这个差值写成 advantage？
 
 要讲清楚这一点，先把几个容易混淆的量分开。
 
-### 从时刻 $t$ 开始的实际回报：$G_t$
+#### 从时刻 $t$ 开始的实际回报：$G_t$
 
 **对于一条已经采样出来的具体轨迹**，在时刻 $t$ 之后，我们可以把未来拿到的累计回报记作
 
@@ -181,7 +174,7 @@ $$
 
 ---
 
-### 状态价值：$V(s_t)$
+#### 状态价值：$V(s_t)$
 
 和 $G_t$ 不同，$V(s_t)$ 表示的不是“这一次实际拿到了多少”，而是：
 
@@ -201,7 +194,7 @@ $$
 
 ---
 
-### 动作价值：$Q(s_t,a_t)$
+#### 动作价值：$Q(s_t,a_t)$
 
 如果再进一步，不只是固定状态 $s_t$，还固定当前采取的动作 $a_t$，那么我们关心的就是：
 
@@ -236,14 +229,14 @@ $$
 
 ---
 
-### 为什么 baseline 常常取 $V(s_t)$
+#### 为什么 baseline 常常取 $V(s_t)$
 
 前面我们说过，理论上只要 baseline 不依赖当前动作，它就不会改变 policy gradient 的期望，只会影响方差。
 
 如果我们希望减掉的是“这个状态本身就有的那部分公共回报”，那么最合理的选择就是状态价值：
 
 $$
-b(s_t)=V(s_t)
+b(s_t) = V(s_t)
 $$
 
 因为 $V(s_t)$ 正好表示：
@@ -267,7 +260,7 @@ $$
 
 ---
 
-### 为什么实现里常写成 $G_t - V(s_t)$
+#### 为什么实现里常写成 $G_t - V(s_t)$
 
 看到这里，一个很自然的问题是：
 
@@ -321,7 +314,7 @@ $$
 
 到这里也就能看清楚 $G_t$ 和 $V(s_t)$ 分别从哪来。
 
-## 在 Monte Carlo REINFORCE 里
+在 Monte Carlo REINFORCE 里
 
 - $G_t$ 来自采样好的完整轨迹，直接从 reward 累加得到
 - $V(s_t)$ 可以是手工设计的 baseline，也可以是额外训练出来的模型，也就是 value model

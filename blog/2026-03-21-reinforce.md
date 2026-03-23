@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Reinforce算法探究
+title: REINFORCE 算法探究
 date: 2026-03-20 12:00:00
 description: 
 tags: learning
@@ -8,11 +8,9 @@ categories: Thoughts
 img: 
 ---
 
-系统回顾一下RL的基础知识，特别是对LLM领域比较重要的那些。
+# REINFORCE
 
-# Reinforce
-
-Reinforce算法优化的目标是最大期望return，即
+REINFORCE 算法优化的目标是最大期望return，即
 
 $$
 \mathcal{L}(\theta) = \mathbb{E}_{\tau \sim \pi_\theta} \left[R(\tau) \right] = \sum_{\tau}{\pi_{\theta}(\tau) R(\tau)}
@@ -64,9 +62,15 @@ $$
 \nabla_{\theta}\mathcal{L}(\theta) = \mathbb{E}_{\tau \sim \pi_{\theta}} \left[ R(\tau) \sum_{t=0}^{T-1} \nabla_{\theta} \log \pi_{\theta}(a_t \mid s_t) \right]
 $$
 
-这个公式就是 REINFORCE 算法 的基础。为了优化我们的目标函数，我们只需要采样大量轨迹，计算每条轨迹的回报（return），对这些回报取平均，然后基于该均值对每个状态转移的对数概率（log probability）进行优化即可。
+这个公式就是 REINFORCE 算法 的基础。为了优化目标函数，我们从当前策略 $\pi_\theta$ 采样多条轨迹 $\tau$，对每条轨迹计算其回报 $R(\tau)$，然后用这些样本来构造梯度的蒙特卡洛估计：
 
-## 对 $R(\tau)$ 的进一步优化
+$$
+\nabla_{\theta}\mathcal{L}(\theta) \approx \frac{1}{N} \sum_{i=1}^{N} R(\tau^{(i)}) \sum_{t=0}^{T-1} \nabla_{\theta} \log \pi_{\theta}(a_t^{(i)} \mid s_t^{(i)})
+$$
+
+也就是说，每条轨迹的回报 $R(\tau)$ 会作为权重，去加权对应轨迹中每一步动作的对数概率梯度，从而更新策略参数。直观上，高回报的轨迹会提高其对应动作的概率，低回报的轨迹则会抑制这些动作的概率。
+
+#### 对 $R(\tau)$ 的进一步优化
 
 同时可以进一步优化，考虑单独的每一个state的转移的目标梯度
 
