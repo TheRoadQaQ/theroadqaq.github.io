@@ -356,7 +356,31 @@ $$
 
 在 Monte Carlo policy gradient 中最常见的估计形式。
 
+#### 从公式到代码
 
+
+```python
+def actor_critic_loss(log_prob, values, returns, mask):
+    """
+    log_prob: [batch_size, seq_len]
+        已采样动作的 log π(a_t | s_t)
+
+    values: [batch_size, seq_len]
+        critic 输出的 V_φ(s_t)
+
+    returns: [batch_size, seq_len]
+        采样轨迹计算得到的 G_t
+
+    mask: [batch_size, seq_len]
+        有效位置 mask
+    """
+    advantage = returns - values
+
+    actor_loss = -((advantage.detach() * log_prob) * mask).sum() / mask.sum()
+    critic_loss = (((values - returns.detach()) ** 2) * mask).sum() / mask.sum()
+
+    return actor_loss, critic_loss
+```
 
 
 
