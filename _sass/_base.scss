@@ -588,6 +588,32 @@ footer.sticky-bottom {
       }
     }
   }
+
+  &.selected-projects {
+    ol.bibliography {
+      li {
+        .row {
+          align-items: flex-start;
+        }
+
+        div.preview,
+        > .row > div[id] {
+          flex: 0 0 100%;
+          max-width: 100%;
+        }
+
+        div.preview {
+          margin-bottom: 0.85rem;
+        }
+
+        img.preview {
+          display: block;
+          width: 100%;
+          max-width: 100%;
+        }
+      }
+    }
+  }
 }
 
 // Rouge Color Customization
