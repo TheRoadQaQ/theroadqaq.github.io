@@ -592,6 +592,16 @@ footer.sticky-bottom {
   &.selected-projects {
     ol.bibliography {
       li {
+        padding-bottom: 1.5rem;
+        margin-bottom: 1.5rem;
+        border-bottom: 1px dashed var(--global-divider-color);
+
+        &:last-child {
+          padding-bottom: 0;
+          margin-bottom: 0;
+          border-bottom: none;
+        }
+
         .row {
           align-items: flex-start;
         }
@@ -608,8 +618,14 @@ footer.sticky-bottom {
 
         img.preview {
           display: block;
-          width: 100%;
+          width: 50%;
           max-width: 100%;
+        }
+
+        @media (max-width: 576px) {
+          img.preview {
+            width: 100%;
+          }
         }
       }
     }
