@@ -8,8 +8,6 @@ categories: Research
 img: 
 ---
 
-## 环境构建是一种核心的 agentic capability
-
 SWE 能力是重要的 Agent 能力，训练这个能力需要搭建 SWE 环境，但是在 Scaling 数据的时候，最大的难题是 Docker Build
 
 我们提出可以训练 Agent 来完成这种 Docker Building 任务，增加 SWE 环境和数据的数量，同时训练模型成为好的 Docker Builder 的时候我们可以收集 Docker Building 轨迹，有了轨迹后可以和 SWE 数据一起训练，最终 SWE 和 Docker Building 的效果都变得更好了
