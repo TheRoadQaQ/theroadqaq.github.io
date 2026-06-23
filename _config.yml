@@ -6,29 +6,29 @@
 # `jekyll serve`. If you change this file, please restart the server process.
 
 # Site Settings
-title                    : "Rongyu Zhang"
-description              : "Dual Ph.D. Candidate majoring in EE & CS."
-repository               : "RoyZry98/RoyZry98.github.io"
+title                    : "Lu Ma"
+description              : "Master Student at Peking University"
+repository               : "TheRoadQaQ/theroadqaq.github.io"
 google_scholar_stats_use_cdn : true
 
 # google analytics
 google_analytics_id      :  # get google_analytics_id from https://analytics.google.com/analytics/
 
 # SEO Related
-google_site_verification :  googlea34440bfd0246b9e.html
+google_site_verification :  # get google_site_verification from https://search.google.com/search-console/about
 bing_site_verification   :  # get bing_site_verification from https://www.bing.com/webmasters/about
 baidu_site_verification  :  # get baidu_site_verification from https://ziyuan.baidu.com/login/index?u=/site/index
 
 # Site Author
 author:
-  name             : "Rongyu Zhang"
-  avatar           : "images/icon.png"
-  bio              : "NJU & PolyU"
-  location         : 
+  name             : "Lu Ma"
+  avatar           : "images/roadma.jpg"
+  bio              : "Peking University"
+  location         : "Beijing, China"
   employer         :
-  pubmed           : 
-  googlescholar    : "https://scholar.google.com/citations?user=rRcc9eoAAAAJ"
-  email            : "rongyuzhang@smail.nju.edu.cn"
+  pubmed           :
+  googlescholar    : "https://scholar.google.com/citations?user=ueMAu5QAAAAJ"
+  email            : "maluqaq@163.com"
   researchgate     :  # e.g., "https://www.researchgate.net/profile/yourprofile"
   uri              :
   bitbucket        :
@@ -37,13 +37,13 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           : "RoyZry98"
+  github           : "TheRoadQaQ"
   google_plus      :
   keybase          :
-  instagram        : "royzry"
+  instagram        :
   impactstory      : # e.g., "https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
   lastfm           :
-  linkedin         : "rongyu-zhang-2b94a82a5"
+  linkedin         :
   dblp             : # e.g., "https://dblp.org/pid/xx/xxxx.html"
   orcid            : # e.g., "https://orcid.org/xxxx"
   pinterest        :
@@ -51,7 +51,7 @@ author:
   stackoverflow    : # http://stackoverflow.com/users/123456/username
   steam            :
   tumblr           :
-  twitter          : "RoyZry98"
+  twitter          :
   vine             :
   weibo            :
   xing             :
